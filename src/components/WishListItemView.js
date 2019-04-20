@@ -32,7 +32,6 @@ class WishListItemView extends React.Component {
     }
 
     renderEditable() {
-        const { item } = this.props;
         return (
             <li className="item">
                 <WishListItemEdit item={this.state.clone} />
@@ -51,6 +50,7 @@ class WishListItemView extends React.Component {
                 <span>{item.price} RMB</span>
                 <span>
                     <button title='edit' onClick={this.onToggleEdit}>E</button>
+                    <button title='remove' onClick={item.remove}>R</button>
                 </span>
             </li>
         );
