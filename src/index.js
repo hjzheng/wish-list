@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { onSnapshot } from 'mobx-state-tree';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { WishList } from './model/WishList';
 
-const wishList = WishList.create({
+let initState = {
     items: [
         {
             name: 'PS4 Pro',
@@ -23,11 +24,18 @@ const wishList = WishList.create({
             image: 'https://img14.360buyimg.com/n7/jfs/t24280/355/809346995/58119/d9407f0e/5b442f74N23caa058.jpg'
         }
     ]
-})
+}
 
-setInterval(() => {
-    wishList.items[0].changePrice(wishList.items[0].price + 1)
-}, 1000)
+if (localStorage.getItem('wishlist')) {
+    const json = JSON.parse(localStorage.getItem('wishlist'));
+    if (WishList.is(json)) initState = json;
+}
+
+const wishList = WishList.create(initState);
+
+onSnapshot(wishList, (snapshot) => {
+    localStorage.setItem('wishlist', JSON.stringify(snapshot));
+})
 
 ReactDOM.render(<App wishList={wishList} />, document.getElementById('root'));
 
