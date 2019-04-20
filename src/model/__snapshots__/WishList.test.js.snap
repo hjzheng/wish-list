@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`use getSnapshot 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "image": "",
+      "name": "Xbox One",
+      "price": 3600,
+    },
+  ],
+}
+`;
+
+exports[`use getSnapshot 2`] = `
+Object {
+  "items": Array [
+    Object {
+      "image": "",
+      "name": "Xbox One",
+      "price": 3600,
+    },
+  ],
+}
+`;
+
+exports[`use onPatch 1`] = `
+Array [
+  Object {
+    "op": "add",
+    "path": "/items/0",
+    "value": Object {
+      "image": "",
+      "name": "Chesterton",
+      "price": 10,
+    },
+  },
+  Object {
+    "op": "replace",
+    "path": "/items/0/name",
+    "value": "Book of G.K. Chesterton",
+  },
+]
+`;
+
+exports[`use onSnapshot 1`] = `
+Array [
+  Object {
+    "items": Array [
+      Object {
+        "image": "",
+        "name": "PS 4",
+        "price": 2800,
+      },
+    ],
+  },
+]
+`;
