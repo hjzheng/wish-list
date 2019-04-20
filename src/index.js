@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { onSnapshot } from 'mobx-state-tree';
+import { onSnapshot, getSnapshot } from 'mobx-state-tree';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -31,13 +31,33 @@ if (localStorage.getItem('wishlist')) {
     if (WishList.is(json)) initState = json;
 }
 
-const wishList = WishList.create(initState);
+let wishList = WishList.create(initState);
 
 onSnapshot(wishList, (snapshot) => {
     localStorage.setItem('wishlist', JSON.stringify(snapshot));
 })
 
-ReactDOM.render(<App wishList={wishList} />, document.getElementById('root'));
+function renderApp() {
+    ReactDOM.render(<App wishList={wishList} />, document.getElementById('root'));
+}
+
+renderApp()
+
+if (module.hot) {
+    module.hot.accept(["./App"], () => {
+        // new components
+        renderApp()
+    })
+
+    module.hot.accept(["./model/WishList"], () => {
+        // new model definitions
+        const snapshot = getSnapshot(wishList)
+        wishList = WishList.create(snapshot)
+        renderApp()
+    })
+}
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

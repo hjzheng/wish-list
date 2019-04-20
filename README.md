@@ -21,4 +21,6 @@
 
 - step 10: Add new list item (reuse WishListItemEdit)
 
-- step 11: store the mobx state tree in local storage
+- step 11: Store the mobx state tree in local storage
+
+- step 12: Restore the Model Tree State using Hot Module Reloading when Model Definitions Change
