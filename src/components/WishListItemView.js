@@ -1,12 +1,66 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { clone, getSnapshot, applySnapshot } from 'mobx-state-tree';
+import WishListItemEdit from './WishListItemEdit';
 
-const WishListItemView = ({item}) => (
-    <li className="item">
-        {item.image && <img src={item.image} />}
-        <h3>{item.name}</h3>
-        <span>{item.price} RMB</span>
-    </li>
-);
+class WishListItemView extends React.Component {
+    state = {
+        isEditing: false
+    }
+
+    onToggleEdit = () => {
+        this.setState({
+            isEditing: true,
+            clone: clone(this.props.item)
+        });
+    }
+
+    onCancelEdit = () => {
+        this.setState({
+            isEditing: false
+        });
+    }
+
+    onSaveEdit = () => {
+
+        applySnapshot(this.props.item, getSnapshot(this.state.clone))
+
+        this.setState({
+            isEditing: false,
+            clone: null
+        });
+    }
+
+    renderEditable() {
+        const { item } = this.props;
+        return (
+            <li className="item">
+                <WishListItemEdit item={this.state.clone} />
+                <button title='cancel' onClick={this.onSaveEdit}>S</button>
+                <button title='save' onClick={this.onCancelEdit}>X</button>
+            </li>
+        );
+    }
+
+    renderListItem() {
+        const {item} = this.props;
+        return (
+            <li className="item">
+                {item.image && <img src={item.image} />}
+                <h3>{item.name}</h3>
+                <span>{item.price} RMB</span>
+                <span>
+                    <button title='edit' onClick={this.onToggleEdit}>E</button>
+                </span>
+            </li>
+        );
+    }
+
+    render() {
+        return (
+            this.state.isEditing ? this.renderEditable() : this.renderListItem()
+        )
+    }
+}
 
 export default observer(WishListItemView);

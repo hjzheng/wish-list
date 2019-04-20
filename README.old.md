@@ -14,3 +14,5 @@ step 5: snapshot by mobx-state-tree // TODO function ?
 step 6: View can defined derived information, we should keep your store as small as possible
 
 step 7: Use mobx-state-tree Models in React
+
+step 8: WishListItemEdit (use mobx-state-tree API -> clone, getSnapshot, applySnapshot)
