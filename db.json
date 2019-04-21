@@ -1,0 +1,26 @@
+{
+  "suggestion_f": [
+    {
+        "name": "PS4 Pro",
+        "price": 2900,
+        "image": "https://img13.360buyimg.com/n7/jfs/t16036/67/2094126919/86623/cfc23459/5a8fd450Nc2b99eb2.jpg"
+    },
+    {
+        "name": "Xbox One",
+        "price": 2800,
+        "image": "https://img13.360buyimg.com/n7/jfs/t10279/271/1299114967/61173/303a46ce/59df12b4Nb065f949.jpg"
+    }
+  ],
+  "suggestion_m": [
+    {
+      "name": "Switch",
+      "price": 1999,
+      "image": "https://img14.360buyimg.com/n7/jfs/t24280/355/809346995/58119/d9407f0e/5b442f74N23caa058.jpg"
+    },
+    {
+      "name": "IPhone XR",
+      "price": 5999,
+      "image": "https://img12.360buyimg.com/n7/jfs/t1/5895/14/3645/95373/5b99cd06E49f73af7/61a7ef5611dff15c.jpg"
+    }
+  ]  
+}
