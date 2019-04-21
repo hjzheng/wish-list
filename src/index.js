@@ -6,57 +6,66 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { WishList } from './model/WishList';
 
-let initState = {
-    items: [
-        {
-            name: 'PS4 Pro',
-            price: 2900,
-            image: 'https://img13.360buyimg.com/n7/jfs/t16036/67/2094126919/86623/cfc23459/5a8fd450Nc2b99eb2.jpg'
+import { Group } from "./model/Group"
+
+// let initState = {
+//     items: [
+//         {
+//             name: 'PS4 Pro',
+//             price: 2900,
+//             image: 'https://img13.360buyimg.com/n7/jfs/t16036/67/2094126919/86623/cfc23459/5a8fd450Nc2b99eb2.jpg'
+//         },
+//         {
+//             name: 'Xbox One',
+//             price: 2800,
+//             image: 'https://img13.360buyimg.com/n7/jfs/t10279/271/1299114967/61173/303a46ce/59df12b4Nb065f949.jpg'
+//         },
+//         {
+//             name: 'Switch',
+//             price: 1999,
+//             image: 'https://img14.360buyimg.com/n7/jfs/t24280/355/809346995/58119/d9407f0e/5b442f74N23caa058.jpg'
+//         }
+//     ]
+// }
+
+
+let initialState = {
+    users: {
+        "a342": {
+            id: "a342",
+            name: "Harry Zheng",
+            gender: "m"
         },
-        {
-            name: 'Xbox One',
-            price: 2800,
-            image: 'https://img13.360buyimg.com/n7/jfs/t10279/271/1299114967/61173/303a46ce/59df12b4Nb065f949.jpg'
+        "5fc2": {
+            id: "5fc2",
+            name: "Song Da Ning",
+            gender: "f"
         },
-        {
-            name: 'Switch',
-            price: 1999,
-            image: 'https://img14.360buyimg.com/n7/jfs/t24280/355/809346995/58119/d9407f0e/5b442f74N23caa058.jpg'
+        "663b": {
+            id: "663b",
+            name: "Xuan Sir",
+            gender: "m"
+        },
+        "65aa": {
+            id: "65aa",
+            name: "Rick",
+            gender: "f"
+        },
+        "ba32": {
+            id: "ba32",
+            name: "Morty",
+            gender: "f"
         }
-    ]
+    }
 }
 
-if (localStorage.getItem('wishlist')) {
-    const json = JSON.parse(localStorage.getItem('wishlist'));
-    if (WishList.is(json)) initState = json;
-}
-
-let wishList = WishList.create(initState);
-
-onSnapshot(wishList, (snapshot) => {
-    localStorage.setItem('wishlist', JSON.stringify(snapshot));
-})
+let group = Group.create(initialState);
 
 function renderApp() {
-    ReactDOM.render(<App wishList={wishList} />, document.getElementById('root'));
+    ReactDOM.render(<App group={group} />, document.getElementById('root'));
 }
 
 renderApp()
-
-if (module.hot) {
-    module.hot.accept(["./App"], () => {
-        // new components
-        renderApp()
-    })
-
-    module.hot.accept(["./model/WishList"], () => {
-        // new model definitions
-        const snapshot = getSnapshot(wishList)
-        wishList = WishList.create(snapshot)
-        renderApp()
-    })
-}
-
 
 
 // If you want your app to work offline and load faster, you can change

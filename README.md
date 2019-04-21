@@ -24,3 +24,5 @@
 - step 11: Store the mobx state tree in local storage
 
 - step 12: Restore the Model Tree State using Hot Module Reloading when Model Definitions Change
+
+- step 13: More mobx-state-tree Types: map, literal, union, and enumeration
