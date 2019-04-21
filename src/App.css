@@ -82,6 +82,7 @@ ul {
 }
 
 .item-edit {
+  text-align: right;
 }
 
 .item-edit input {

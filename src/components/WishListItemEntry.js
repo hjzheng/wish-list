@@ -12,7 +12,7 @@ class WishListItemEntry extends Component {
     }
 
     addItem = () => {
-        this.props.items.addItem(this.state.entry);
+        this.props.wishList.addItem(this.state.entry);
         this.setState({
             entry: WishListItem.create({ name: "", price: 0 })
         })

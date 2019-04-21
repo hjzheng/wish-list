@@ -30,3 +30,9 @@
 - step 14: Defining Asynchronous Processes Using Flow
 
 - step 15: Create Relationships in your Data with mobx-state-tree Using References and Identifiers
+
+- step 16: Load data from server
+
+- step 17: Use Volatile State and Lifecycle Methods to Manage Private State
+
+- setp 18: Automatically Send Changes to the Server by Using onSnapshot
