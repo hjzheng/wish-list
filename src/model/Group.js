@@ -1,7 +1,8 @@
-import { types, flow, applySnapshot, onSnapshot, getSnapshot } from 'mobx-state-tree';
+import { types, flow, applySnapshot } from 'mobx-state-tree';
 import { WishList } from './WishList';
+import { createStorable } from './Storable';
 
-export const User = types.model({
+const BaseUser = types.model({
     id: types.identifier,
     name: types.string,
     gender: types.enumeration("gender", ["m", "f"]),
@@ -13,22 +14,10 @@ export const User = types.model({
         const res = yield window.fetch(`http://localhost:3001/suggestion_${self.gender}`)
         const suggestions = yield res.json()
         self.wishList.items.push(...suggestions);
-    }),
-    save: flow(function* save() {
-        try {
-            yield window.fetch(`http://localhost:3001/users/${self.id}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(getSnapshot(self))
-            })
-        } catch (e) {
-            console.error("Uh oh, failed to save: ", e)
-        }
-    }),
-    afterCreate() {
-        onSnapshot(self, self.save)
-    }
+    })
 }))
+
+export const User = types.compose(BaseUser, createStorable('users', 'id'));
 
 export const Group = types.model({
     users: types.map(User)

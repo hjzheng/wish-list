@@ -35,4 +35,6 @@
 
 - step 17: Use Volatile State and Lifecycle Methods to Manage Private State
 
-- setp 18: Automatically Send Changes to the Server by Using onSnapshot
+- step 18: Automatically Send Changes to the Server by Using onSnapshot
+
+- step 19: Create Dynamic Types and use Type Composition to Extract Common Functionality

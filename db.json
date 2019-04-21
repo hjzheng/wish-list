@@ -49,7 +49,13 @@
       "name": "Song Da Ning",
       "gender": "f",
       "wishList": {
-        "items": []
+        "items": [
+          {
+            "name": "自动面条机",
+            "price": 599,
+            "image": "https://img12.360buyimg.com/n7/jfs/t20977/249/407667536/93670/300c3c2d/5b0be5b1Ndd59faba.jpg"
+          }
+        ]
       },
       "recipient": "65aa"
     },
