@@ -6,11 +6,11 @@ import WishListItemEntry from './WishListItemEntry';
 
 // TODO: idx should change to uniqueid
 
-const WishListView = ({wishList}) => (
+const WishListView = ({wishList, readonly}) => (
     <div className="list">
-        <ul>{wishList.items.map((item, idx) => <WishListItemView key={idx} item={item} />)}</ul>
+        <ul>{wishList.items.map((item, idx) => <WishListItemView readonly={readonly} key={idx} item={item} />)}</ul>
         <TotalProceView totolPrice={wishList.totolPrice} />
-        <WishListItemEntry items={wishList}/>
+        {!readonly && <WishListItemEntry wishList={wishList} />}
     </div>
 )
 

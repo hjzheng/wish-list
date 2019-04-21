@@ -42,16 +42,18 @@ class WishListItemView extends React.Component {
     }
 
     renderListItem() {
-        const {item} = this.props;
+        const {item, readonly} = this.props;
         return (
             <li className="item">
                 {item.image && <img src={item.image} />}
                 <h3>{item.name}</h3>
                 <span>{item.price} RMB</span>
-                <span>
-                    <button title='edit' onClick={this.onToggleEdit}>E</button>
-                    <button title='remove' onClick={item.remove}>R</button>
-                </span>
+                {!readonly && (
+                    <span>
+                        <button title='edit' onClick={this.onToggleEdit}>E</button>
+                        <button title='remove' onClick={item.remove}>R</button>
+                    </span>
+                )}
             </li>
         );
     }

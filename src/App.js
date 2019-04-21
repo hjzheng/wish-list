@@ -1,8 +1,19 @@
 import React, { Component } from "react"
+import { observer } from 'mobx-react'
 import './App.css'
 import logo from './asset/ram.jpg'
 
 import WishListView from "./components/WishListView";
+
+const User = observer(({ user }) => (
+  <div>
+      <WishListView wishList={user.wishList} />
+      <button onClick={user.getSuggestions}>Suggestions</button>
+      <hr />
+      <h2>{user.recipient ? user.recipient.name : ""}</h2>
+      {user.recipient && <WishListView wishList={user.recipient.wishList} readonly />}
+  </div>
+))
 
 class App extends Component {
     state = {
@@ -30,11 +41,13 @@ class App extends Component {
                     </option>
                   ))}
                 </select>
-                {selectedUser && <WishListView wishList={selectedUser.wishList} />}
-                {selectedUser && <button onClick={selectedUser.getSuggestions}>suggestion</button>}
+                <button onClick={group.drawLots}>Draw lots</button>
+                {selectedUser && <User user={selectedUser} />}
             </div>
         )
     }
 }
+
+
 
 export default App
